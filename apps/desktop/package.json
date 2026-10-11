@@ -1,10 +1,10 @@
 {
-  "name": "hermes",
-  "productName": "Hermes",
+  "name": "mosse",
+  "productName": "Mosse",
   "private": true,
   "version": "0.0.0",
-  "description": "Native desktop shell for Hermes Agent.",
-  "author": "Nous Research",
+  "description": "Native desktop shell for Mosse (a fork of Hermes Agent by Nous Research, MIT).",
+  "author": "Peter Thairu Muigai",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NousResearch/hermes-agent.git"
