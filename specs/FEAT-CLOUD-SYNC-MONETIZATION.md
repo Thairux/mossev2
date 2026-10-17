@@ -3,7 +3,7 @@ id: FEAT-CLOUD-SYNC-MONETIZATION
 title: "Bring-Your-Own-Supabase Cloud Sync and Ad-Supported Developer Sponsorships"
 type: feature
 status: approved
-version: 2
+version: 3
 schema_version: 1
 dependencies: [ARCH-REBRAND-MOSSE, FEAT-TKC-NATIVE]
 scope:
@@ -25,6 +25,7 @@ Cloud backup and multi-device continuity operate via a **Bring-Your-Own-Supabase
 
 ## Invariants & Guardrails
 - **Prompt Isolation Invariant:** Developer sponsor messages must NEVER be injected into LLM context, system prompts, reasoning loops, or token streams. They reside exclusively in peripheral UI surfaces (desktop status bar, new session header, CLI startup banner).
+- **Theme Cohesion Invariant:** All developer partner cards, promotional badges, and Supabase database configuration modals MUST strictly conform to the active visual theme and UI design system (using standard CSS variables: `--bg-primary`, `--bg-secondary`, `--border`, `--text-muted`, `--accent`). No garish third-party banners, flashing ads, or unstyled elements. When the user switches themes (e.g. from Dark to Nord or Cyberpunk), sponsor cards and modals adapt their background, borders, and typography instantly.
 - **Zero-Knowledge Encryption:** Before any TKC memory block or board record egresses to the user's Supabase database, it undergoes local client-side AES-256-GCM encryption using a passphrase-derived key known only to the user.
 - **Local Sovereignty:** Cloud backup is strictly an optional sync enhancement. The local SQLite TKC database remains fully functional offline indefinitely without an internet connection or Supabase configuration.
 - **Zero Creator Hosting Liability:** The creator incurs zero database hosting or bandwidth charges, preventing server bankruptcy as adoption scales.
@@ -45,3 +46,4 @@ Cloud backup and multi-device continuity operate via a **Bring-Your-Own-Supabase
 - Encrypted sync round-trip test verifies that uploaded data is ciphertext-only and decrypts cleanly on a secondary workstation instance.
 - Developer sponsor banners render exclusively in peripheral UI components with zero LLM prompt contamination.
 - Complete offline capability is preserved when no Supabase URL is configured.
+- Developer sponsor cards and Supabase connection modals react dynamically to theme switches with zero visual styling collisions.

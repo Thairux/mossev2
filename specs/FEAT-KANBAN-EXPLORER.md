@@ -2,8 +2,8 @@
 id: FEAT-KANBAN-EXPLORER
 title: "Unified Kanban Multi-Agent Delegation and Visual TKC Database Explorer"
 type: feature
-status: proposed
-version: 1
+status: approved
+version: 2
 schema_version: 1
 dependencies: [ARCH-REBRAND-MOSSE, FEAT-TKC-NATIVE, FEAT-SDD-INTEGRATION]
 scope:
@@ -24,18 +24,21 @@ In complex engineering workflows, human developers and autonomous agents need cl
 ## Invariants & Guardrails
 - **Bi-Directional Card Sync:** Kanban task card status transitions (Backlog -> In Progress -> Blocked -> In Review -> Done) must emit atomic TKC board updates so CLI/TUI and Desktop stay in sync.
 - **Context Provenance:** Every delegated task card must attach relevant TKC short refs and SDD spec/task IDs.
+- **Theme Cohesion Invariant:** All new UI elements (Kanban boards, worker lane swimlanes, card components, TKC graph visualizer, and inspector modals) MUST strictly inherit from the application's existing design token system and CSS variables (`--bg-primary`, `--bg-secondary`, `--border`, `--text-primary`, `--text-muted`, `--accent`). Zero hardcoded hex colors. All existing themes (Dark, Light, Cyberpunk, Nord, Solarized) and user custom skins must apply seamlessly over every newly introduced view.
 - **Responsive Electron/Web UI:** Database explorer queries must be paginated or streamed via WebSockets to prevent UI stutter when browsing large symbol indexes.
 
 ## Requirements
 - Extend Kanban card schema to include `tkc_refs` (array of string refs), `sdd_task_id`, and `assigned_agent`.
 - Implement agent-to-agent delegation tools allowing worker agents to spawn subtasks onto the Kanban board and wait for completion signals.
 - Build the **TKC Database Explorer** component in `apps/desktop` and `web/`:
-  - Visual Knowledge Graph displaying relationships between files, decisions, rules, and symbols.
+  - Visual Knowledge Graph displaying relationships between files, decisions, rules, and symbols with dynamic theme styling.
   - Live atomic activity timeline streaming board posts, handoffs, and questions.
   - Visual diff and revision inspector for checking file version history stored in TKC.
 - Provide drag-and-drop task movement, tag filtering, and search across Kanban cards and TKC records.
+- Ensure 100% theme reactivity: switching active themes in settings instantly updates all Kanban and Explorer components without full page reloads.
 
 ## Acceptance Criteria
 - Creating or moving a Kanban card automatically generates a corresponding atomic entry in the TKC board.
 - The TKC visual explorer correctly queries and renders local TKC symbols, decisions, and comments without freezing the Electron main process.
 - Subagent task delegations propagate card status and return results to the parent session upon completion.
+- All newly added components dynamically update their colors, borders, and typography when switching between Light, Dark, Cyberpunk, and Nord themes.
