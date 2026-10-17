@@ -1010,6 +1010,24 @@ memory:
   # every N user turns. Set to 0 to disable. Only active when memory is enabled.
   nudge_interval: 10        # Nudge every 10 user turns (0 = disabled)
 
+  # External memory provider: one non-builtin provider at a time (memory.provider).
+  # Built-in ("", "default", "builtin", "none") = Hermes file store (MEMORY.md / USER.md).
+  # Set to "tkc" to use the TKC (Token Cache Compressor) shared brain as mosse's
+  # native memory instead of / in addition to the built-in store.
+  provider: "tkc"
+
+  # TKC memory provider configuration (active when memory.provider == "tkc").
+  # TKC is bundled with mosse by default; point tkc_path at an external TKC CLI
+  # if you prefer a separate TKC installation.
+  tkc:
+    # Path to the TKC CLI executable. Default: "tkc" on PATH.
+    # For bundled TKC, set to the vendored binary path (e.g. "./bin/tkc" or the
+    # installer's bundled location).
+    tkc_path: "tkc"
+
+    # TKC home directory (where tkc.db lives). Default: ~/.tkc if unset.
+    tkc_home: ""
+
 # =============================================================================
 # Session Continuity (Messaging Platforms)
 # =============================================================================
