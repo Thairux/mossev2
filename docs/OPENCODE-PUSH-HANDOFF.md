@@ -5,6 +5,25 @@
 
 ---
 
+## ✅ STATUS: TASK COMPLETE (2026-10-18, closed by OpenCode)
+
+The push finished — one of the 952 MB full-history attempts completed server-side
+after its client-side timeout expired. Verified state:
+
+| Check | Result |
+|---|---|
+| `gh api repos/Thairux/mossev2/commits?per_page=1` tip SHA | `9462cfdbd30ce9d8cee51101494cfd97598411ed` (= local HEAD) |
+| Remote tip commit message | `docs: add OpenCode handoff for chunked GitHub push of remaining 46k commits` |
+| `git ls-remote origin main` | `9462cfdbd30ce9d8cee51101494cfd97598411ed` |
+| `pushed_at` | `2026-10-18T06:05:19Z` |
+
+Notes: tip-SHA match is cryptographic proof of full 51,338-commit history; the
+chunked checkpoint pushes were therefore un-needed (chunk 2 correctly rejected
+non-fast-forward against the advanced remote). Upstream (`NousResearch/hermes-agent`)
+was never touched.
+
+---
+
 ## Situation
 
 | Item | Value |
